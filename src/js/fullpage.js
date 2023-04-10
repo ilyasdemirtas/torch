@@ -13,7 +13,7 @@
 			"verticalCentered" : true,
 			'resize' : true,
 			'slidesColor' : [],
-			'anchors':[],
+			'anchors':["content1", "content2", "content3", "content4", "contact"],
 			'scrollingSpeed': 700,
 			'easing': 'easeInQuart',
 			'menu': false,
@@ -29,7 +29,7 @@
 			'loopHorizontal': true,
 			'autoScrolling': true,
 			'scrollOverflow': false,
-			'css3': false,
+			'css3': true,
 			'paddingTop': 0,
 			'paddingBottom': 0,
 			'fixedElements': null,
@@ -110,7 +110,7 @@
 			options.css3 = support3d();
 		}
 
-		$('body').wrapInner('<div id="superContainer" />');
+		$('.wrapper').wrapInner('<div id="superContainer" />');
 
 		//creating the navigation dots 
 		if (options.navigation) {
@@ -1144,24 +1144,24 @@ $(document).ready(function() {
 
 	var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
-		$('video').each(function() {
+	$('video').each(function() {
 
-			var source = $(this).find('source').get(0);
-			var src = $(source).attr('src');
-			var mobileSrc = $(source).data('mobile-src');
+		var source = $(this).find('source').get(0);
+		var src = $(source).attr('src');
+		var mobileSrc = $(source).data('mobile-src');
 
-			if(isTablet){
-				$(source).attr('src', mobileSrc);
-				$(source).attr('data-mobile-src', src);
-			} else {
-				$(source).attr('src', src);
-				$(source).attr('data-mobile-src', mobileSrc);
-			}
+		if(isTablet){
+			$(source).attr('src', mobileSrc);
+			$(source).attr('data-mobile-src', src);
+		} else {
+			$(source).attr('src', src);
+			$(source).attr('data-mobile-src', mobileSrc);
+		}
 
-			$(this).get(0).load();
-		});
+		$(this).get(0).load();
+	});
 
-    var fpapi = $.fn.fullpage({
+    $.fn.fullpage({
         afterLoad: function(e, index){
             $('video').each(function() {
                 $(this).get(0).pause();
@@ -1197,5 +1197,23 @@ $(document).ready(function() {
 
 		};
 	}
+
+});
+
+$(document).on('click','.menu__icon',function(){
+	$('body').toggleClass('menu_shown');
+});
+
+$(document).on('click','.open_music_btn',function(){
+	$('.open_music_btn').hide();
+	$('.close_music_btn').show();
+	$('audio').get(0).play();
+});
+
+$(document).on('click','.close_music_btn',function(){
+	$('.open_music_btn').show();
+	$('.close_music_btn').hide();
+	$('audio').get(0).pause();
+	$('audio').get(0).currentTime = 0;
 
 });

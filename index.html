@@ -8,32 +8,57 @@
         <link rel="stylesheet" type="text/css" href="src/css/style.css">
     </head>
     <body>
-        <html>
-            <div class="section custom-full1">
+        <div class="icons">
+            <img src="src/img/audio-close.png" class="close_music_btn" alt="Close Music">
+            <img src="src/img/audio-open.png" class="open_music_btn" alt="Open Music">
+        </div>
+        <audio loop>
+            <source src="assets/audios/music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <nav>
+            <span class="logo" alt="TORCH">LOGO</span>
+            <a class="instagram-icon"><img src="src/img/instagram.svg" width="40"></a>
+            <a class="menu__icon mobile"><span></span></a>
+            <ul class="menu mobile">
+                <li><a href="#content1" class="menu__item">Content 1</a></li>
+                <li><a href="#content2" class="menu__item">Content 2</a></li>
+                <li><a href="#content3" class="menu__item">Content 3</a></li>
+                <li><a href="#content4" class="menu__item">Content 4</a></li>
+                <li><a href="#contact" class="menu__item">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="wrapper">
+            <div class="section custom-full1" data-anchor="contant1">
                 <video class="active" autoplay muted playsinline>
-                    <source src="assets/videos/horizontal/video1.mp4" data-mobile-src="assets/videos/vertical/video1.mp4" type="video/mp4">
+                    <source src="assets/videos/horizontal/1.mp4" data-mobile-src="assets/videos/vertical/1.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="section custom-full2">
+            <div class="section custom-full2" data-anchor="contant2">
                 <video preload="auto" muted playsinline>
-                    <source src="assets/videos/horizontal/video2.mp4" data-mobile-src="assets/videos/vertical/video2.mp4" type="video/mp4">
+                    <source src="assets/videos/horizontal/2.mp4" data-mobile-src="assets/videos/vertical/2.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="section custom-full3">
+            <div class="section custom-full3" data-anchor="contant3">
                 <video preload="auto" muted playsinline>
-                    <source src="assets/videos/horizontal/video3.mp4" data-mobile-src="assets/videos/vertical/video3.mp4" type="video/mp4">
+                    <source src="assets/videos/horizontal/3.mp4" data-mobile-src="assets/videos/vertical/3.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="section custom-full4">
+            <div class="section custom-full4" data-anchor="contant4">
                 <video preload="auto" muted playsinline>
-                    <source src="assets/videos/horizontal/video4.mp4" data-mobile-src="assets/videos/vertical/video4.mp4" type="video/mp4">
+                    <source src="assets/videos/horizontal/4.mp4" data-mobile-src="assets/videos/vertical/4.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="section custom-full4">
+            <!-- <div class="section custom-full4">
+                <video preload="auto" muted playsinline>
+                    <source src="assets/videos/horizontal/5.mp4" data-mobile-src="assets/videos/vertical/5.mp4" type="video/mp4">
+                </video>
+            </div> -->
+            <div class="section custom-full4" data-anchor="contact">
                 <div style="display:table; width: 100%; height:100%; ">
                     <div style="width: 100%; height:100%; color:white; font-size: 50px; display: table-cell; vertical-align:middle; text-align: center;">CONTACT</div>
                 </div> 
             </div>
-        </html>
+        </div>
     </body>
 </html>

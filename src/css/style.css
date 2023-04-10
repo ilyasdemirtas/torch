@@ -1,38 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html, body {
     width:100%;
     height: 100%;
-    }
-    body, html {
-        margin:0;
-        padding:0;
-    }
-    #superContainer {
-        height:100%;
-        position:relative;
-    }
-    .section{
-        position: relative;
-        -webkit-box-sizing: border-box; 
-        -moz-box-sizing: border-box; 
-        box-sizing: border-box; 
-        background-color: black;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-    }
-    .section .tableCell{
-        width: 100%;
-        height: 100%;
-    }
-    .section video {
-        position: absolute;
-        top :0;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-    }
+}
+
+  /**
+   * fullPage 1.4.5
+   * https://github.com/alvarotrigo/fullPage.js
+   * MIT licensed
+   *
+   * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+   */
+  body, html {
+      margin:0;
+      padding:0;
+  }
+  #superContainer {
+      height:100%;
+      position:relative;
+  }
+  .section{
+      position: relative;
+      -webkit-box-sizing: border-box; 
+      -moz-box-sizing: border-box; 
+           box-sizing: border-box;
+           background-color: #000;
+  }
+  .slide {
+      float: left;
+  }
+  .slide, .slidesContainer {
+      height: 100%;
+      display: block;
+  }
+  .slides {
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      -webkit-transition: all 0.3s ease-out;
+      -moz-transition: all 0.3s ease-out;
+      -o-transition: all 0.3s ease-out;
+      transition: all 0.3s ease-out;
+  }
+  .section.table,
+  .slide.table{
+      display:table;
+      width:100%;
+  }
+  .tableCell{
+      display:table-cell;
+      vertical-align: middle;
+      width:100%;
+      height: 100%;
+      position: relative;
+  }
+  .slidesContainer {
+      float: left;
+      position: relative;
+  }
+  .controlArrow{
+      position:absolute;
+      top:50%;
+      cursor:pointer;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      margin-top: -38px;
+  }
+  
+  .controlArrow.prev{
+      left:15px;
+      width: 0px;
+      border-width: 38.5px 34px 38.5px 0;
+      border-color: transparent #fff transparent transparent;
+  }
+  .controlArrow.next{  
+      right:15px;
+      border-width: 38.5px 0 38.5px 34px;
+      border-color: transparent transparent transparent #fff;
+  }
+  .scrollable{
+      overflow:scroll;
+  }
+  .easing{
+      -webkit-transition: all 0.7s ease-out;
+      -moz-transition: all 0.7s ease-out;
+      -o-transition: all 0.7s ease-out;
+      transition: all 0.7s ease-out;
+  }
+  #fullPage-nav{
+      position: fixed;
+      z-index: 100;
+      margin-top: -32px;
+      top: 50%;
+      opacity: 1;
+  }
+  #fullPage-nav.right{
+      right: 17px;
+  }
+  #fullPage-nav.left{
+      left: 17px;
+  }
+  .fullPage-slidesNav{
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      opacity: 1;
+  }
+  .fullPage-slidesNav.bottom{
+      bottom: 17px;
+  }
+  .fullPage-slidesNav.top{
+      top: 17px;
+  }
+  #fullPage-nav ul,
+  .fullPage-slidesNav ul{
+      margin:0;
+      padding:0;
+  }
+  #fullPage-nav li,
+  .fullPage-slidesNav li{
+      display: block;
+      width: 14px;
+      height: 13px;
+      margin: 7px;
+      position:relative;
+  }
+  .fullPage-slidesNav li{
+      display: inline-block;
+  }
+  #fullPage-nav li a,
+  .fullPage-slidesNav li a{
+      display: block;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      text-decoration: none;
+  }
+  #fullPage-nav li .active span,
+  .fullPage-slidesNav .active span{
+      background: #333;
+  }
+  #fullPage-nav span,
+  .fullPage-slidesNav span{
+      top: 2px;
+      left: 2px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid #000;
+      background: rgba(0, 0, 0, 0);
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+  }
+  .fullPage-tooltip{
+      position: absolute;
+      color: #fff;
+      font-size: 14px;
+      font-family: arial, helvetica, sans-serif;
+      top: -2px;
+  }
+  .fullPage-tooltip.right{
+      right: 20px;
+  }
+  .fullPage-tooltip.left{
+      left: 20px;
+  }
+  
+    
+.section video {
+    position: absolute;
+    top :0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icons{
+    position: absolute;
+    z-index: 10;
+    bottom: 10px;
+    left: 10px;
+}
+.icons .open_music_btn{
+    cursor: pointer;
+}
+.icons .close_music_btn{
+    cursor: pointer;
+    display: none;
+}
+nav{
+    width: 100%;
+    height: 64px;
+    background: rgba(0,0,0,.7);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+nav ul {
+    list-style: none;
+  }
+  .instagram-icon{
+    position: absolute;
+    right: 80px;
+    top: 11px;
+  }
+  .logo{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: white;
+  }
+.menu__icon {
+    height: 32px;
+    width: 43px;
+    margin: 15px;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 20;
+}
+  
+.menu__icon span {
+    display: block;
+    background: white;
+    width: 100%;
+    height: 4px;
+    margin-top: -2px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+  
+  .menu__icon:before,
+  .menu__icon:after {
+      content: "";
+      display: block;
+      background: white;
+      width: 100%;
+      height: 4px;
+      position: absolute;
+      left: 0;
+      transform-origin: center center;
+      transform: rotate(0deg);
+      transition: all 0.3s ease;
+  }
+  
+  .menu__icon:before {
+    top: 2px;
+    margin-top: -2px;
+  }
+  
+  .menu__icon:after {
+    bottom: 2px;
+    margin-bottom: -2px;
+  }
+  
+  
+  .menu_shown .menu__icon span {
+    background: transparent;
+  }
+  
+  .menu_shown .menu__icon:before {
+      top: 50%;
+      transform: rotate(45deg);
+  }
+  
+  .menu_shown .menu__icon:after {
+      bottom: 50%;
+      transform: rotate(-45deg);
+  }
+  
+  
+  .mobile.menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      min-height: 100vh;
+      text-align: center;
+      background-color: black;
+      padding-top: 112px;
+      z-index: 10;
+      transition: all .4s ease-in-out;
+      transform: translateX(100%);
+  }
+  
+  .menu_shown .mobile.menu {
+      transform: translateX(0);
+  }
+  
+  .mobile .menu__item {
+      display: block;
+      line-height: 2;
+      padding: 10px 0;
+      text-decoration: none;
+      color: white;
+  }
