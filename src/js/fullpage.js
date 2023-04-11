@@ -13,7 +13,7 @@
 			"verticalCentered" : true,
 			'resize' : true,
 			'slidesColor' : [],
-			'anchors':["content1", "content2", "content3", "content4", "contact"],
+			'anchors':["Kurumsal-Sorumluluk", "Ham-Maddelerimiz", "Uretim-Prensiplerimiz", "Odullerimiz", "Tarigi-Fabrika", "iletisim"],
 			'scrollingSpeed': 700,
 			'easing': 'easeInQuart',
 			'menu': false,
@@ -1208,6 +1208,7 @@ $(document).on('click','.open_music_btn',function(){
 	$('.open_music_btn').hide();
 	$('.close_music_btn').show();
 	$('audio').get(0).play();
+	$('audio').get(0).volume = .5;
 });
 
 $(document).on('click','.close_music_btn',function(){
