@@ -177,7 +177,6 @@ html, body {
   .fullPage-tooltip.left{
       left: 20px;
   }
-  
     
 .section video {
     position: absolute;
@@ -188,20 +187,43 @@ html, body {
     object-fit: cover;
 }
 
-.icons{
+.icons-top-right{
+    position: absolute;
+    z-index: 10;
+    top: 80px;
+    right: 10px;
+}
+.icons-bottom-left{
     position: absolute;
     z-index: 10;
     bottom: 10px;
     left: 10px;
+    float: left;
 }
-.icons .open_music_btn{
-    cursor: pointer;
-    width: 50px;
+.icons-bottom-right{
+    position: absolute;
+    z-index: 10;
+    bottom: 10px;
+    right: 10px;
 }
-.icons .close_music_btn{
+.icons .icon{
     cursor: pointer;
-    display: none;
-    width: 50px;
+    width: 40px;
+    opacity: .5;
+    transition: all 0.3s ease;
+}
+
+.icons .icon.open_music_btn, .icons .icon.close_music_btn{
+    margin-right: 10px;
+}
+
+.icons .icon.direction.up{
+    transform: rotate(180deg);
+    opacity: 0;
+}
+
+.icons .icon:hover{
+    opacity: 1;
 }
 nav{
     width: 100%;
@@ -215,12 +237,10 @@ nav{
     list-style: none;
   }
   .instagram-icon{
+    height: 40px;
     position: absolute;
-    right: 75px;
-    top: 15px;
-  }
-  .instagram-icon img{
-    width: 35px;
+    right: 65px;
+    bottom: 12px;
   }
   .logo{
     position: absolute;
@@ -230,65 +250,14 @@ nav{
     width: 70px;
   }
 .menu__icon {
-    height: 32px;
-    width: 43px;
-    margin: 15px;
+    height: 40px;
     position: absolute;
-    right: 0;
+    right: 12px;
+    bottom: 12px;
     display: inline-block;
     vertical-align: middle;
     z-index: 20;
 }
-  
-.menu__icon span {
-    display: block;
-    background: white;
-    width: 100%;
-    height: 4px;
-    margin-top: -2px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-}
-  
-  .menu__icon:before,
-  .menu__icon:after {
-      content: "";
-      display: block;
-      background: white;
-      width: 100%;
-      height: 4px;
-      position: absolute;
-      left: 0;
-      transform-origin: center center;
-      transform: rotate(0deg);
-      transition: all 0.3s ease;
-  }
-  
-  .menu__icon:before {
-    top: 2px;
-    margin-top: -2px;
-  }
-  
-  .menu__icon:after {
-    bottom: 2px;
-    margin-bottom: -2px;
-  }
-  
-  
-  .menu_shown .menu__icon span {
-    background: transparent;
-  }
-  
-  .menu_shown .menu__icon:before {
-      top: 50%;
-      transform: rotate(45deg);
-  }
-  
-  .menu_shown .menu__icon:after {
-      bottom: 50%;
-      transform: rotate(-45deg);
-  }
   
   
   .mobile.menu {
@@ -319,4 +288,14 @@ nav{
 
   .mobile .menu__item img {
     height: 20px;
+}
+
+.video_name{
+    z-index: 10;
+    position: absolute;
+    width: 150px;
+    left: 60px;
+    bottom: 80px;
+    opacity: 0;
+    transition: all .4s ease-in-out;
 }
