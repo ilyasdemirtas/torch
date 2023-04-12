@@ -1,32 +1,46 @@
+var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
+
+var pageEvents = {
+    wheel: true,
+    mouse: false,
+    touch: true,
+    keydown: true
+};
+
+if(isTablet){
+    pageEvents = {
+        wheel: true,
+        mouse: true,
+        touch: true,
+        keydown: true
+    };
+}
+
 $(document).ready(function() {
 
+    var pagebleInstance;
+    
+	$('.close_music_btn, .play_video, .pause_video').hide();
+    $('.video_name').css('opacity', 0);
+
+    $('video').each(function() {
+
+        var source = $(this).find('source').get(0);
+        var src = $(source).attr('src');
+        var mobileSrc = $(source).data('mobile-src');
+
+        if(isTablet){
+            $(source).attr('src', mobileSrc);
+            $(source).attr('data-mobile-src', src);
+        } else {
+            $(source).attr('src', src);
+            $(source).attr('data-mobile-src', mobileSrc);
+        }
+
+        $(this).get(0).load();
+    });
+
     pageInit();
-
-	var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
-
-	$('video').each(function() {
-
-		var source = $(this).find('source').get(0);
-		var src = $(source).attr('src');
-		var mobileSrc = $(source).data('mobile-src');
-
-		if(isTablet){
-			$(source).attr('src', mobileSrc);
-			$(source).attr('data-mobile-src', src);
-		} else {
-			$(source).attr('src', src);
-			$(source).attr('data-mobile-src', mobileSrc);
-		}
-
-		$(this).get(0).load();
-	});
-
-	$('.icon.direction.up').hide();
-	$('.section:eq(0)').find('.video_name').css('opacity', 1);
-	$('.close_music_btn, .play_video').hide();
-
-	video = $('video.active');
-	autoScroll(video[0]);
 
 	$(document).on('click','.menu__icon' ,function(){
 		$('body').toggleClass('menu_shown');
@@ -67,72 +81,99 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click','.up', function(){
-		$.fn.fullpage.moveSectionUp();
+		pagableInstance.prev();
 	});
 	
 	$(document).on('click','.down', function(){
-		$.fn.fullpage.moveSectionDown();
+		pagableInstance.next();
 	});
 
 });
 
 function pageInit(){
-
-    var pages = [];    
-    $('.menu.mobile li a').each(function(){
-        pages.push($(this).attr('href').replace('#', ''));
-    });
-
-    $.fn.fullpage({
-        anchors: pages,
-        afterLoad: function(e, index){
-            afterLoad(e, index);
+    console.log(this.pageEvents);
+    pagableInstance = new Pageable(".wrapper", {
+        // displays navigation pips
+        pips: false,
+        // animation speed
+        animation: 500,
+        // delay in ms
+        delay: 0,
+        // the interval in ms that the resize callback is fired
+        throttle: 50,
+        // swipe / mouse drag distance in px
+        swipeThreshold: 250,
+        // or 'horizontal'
+        orientation: "vertical", 
+        // drag / scroll freely instead of snapping to the next page
+        freeScroll: true,
+        // nav elements
+        navPrevEl: false,
+        navNextEl: false,
+        // infinite scroll
+        infinite: false, 
+        // default: false
+        slideshow: false,
+        // easing function
+        easing: function easing(t, b, c, d, s) {
+            return -c * (t /= d) * (t - 2) + b;
         },
-        onLeave: function(e, index){
-            onLeave(e, index)
+        // child selector
+        childSelector: '[data-anchor]',
+        events: this.pageEvents,
+        onInit: () => {
+            var activeSection = $('.section.pg-active');
+            var activeVideo = $(activeSection).find('video');
+            if($(activeVideo).length){
+
+                $('.icons .icon.pause_video').show();
+                $(activeSection).find('.video_name').css('opacity', 1);
+                $(activeVideo).addClass('active');
+                $(activeVideo).get(0).play();
+                $(activeVideo).addClass('active');
+
+                autoScroll($(activeVideo).get(0));
+            }
+        },
+        onStart: () => {
+            $('.video_name').css('opacity', 0);
+	        $('.icons .icon.pause_video').hide();
+        },
+        onFinish: () => {
+
+            $('video').each(function() {
+                $(this).get(0).pause();
+                $(this).get(0).currentTime = 0;
+                $(this).removeClass('active');
+            });
+        
+            var ind = $('.section.pg-active').index();
+            if($('.section.pg-active video').length){
+                $('.icons .icon.pause_video').show();
+                $('.section:eq('+ind+')').find('.video_name').css('opacity', 1);
+                $('.section.pg-active video').get(0).play();
+                $('.section.pg-active video').addClass('active');
+                autoScroll($('.section.pg-active video').get(0));
+            }
+        
+            if(ind > 0){
+                $('.icon.direction.up').show();
+            } else {
+                $('.icon.direction.up').hide();
+            }
+
+            var sectionCount = $('.section').length;
+            if(ind == sectionCount -1){
+                $('.icon.direction.down').hide();
+            } else {
+                $('.icon.direction.down').show();
+            }
         }
     });
 }
 
 function autoScroll(video){
 	video.onended = function() {
-		$.fn.fullpage.moveSectionDown();
+        pagableInstance.next();
 	};
-}
-
-function afterLoad(e, index){
-    
-    $('video').each(function() {
-        $(this).get(0).pause();
-        $(this).get(0).currentTime = 0;
-        $(this).removeClass('active');
-    });
-
-    var ind = index -1;
-    if($('.section:eq('+ind+') video').length){
-        $('.section:eq('+ind+') video').get(0).play();
-        $('.section:eq('+ind+') video').addClass('active');
-        autoScroll($('.section:eq('+ind+') video').get(0));
-    }
-
-    var sectionCount = $('.section').length;
-    if(ind > 0){
-        $('.icon.direction.up').show();
-    } else {
-        $('.icon.direction.up').hide();
-    }
-    
-    if(index == sectionCount){
-        $('.icon.direction.down').hide();
-    } else {
-        $('.icon.direction.down').show();
-    }
-
-    $('.icons .icon.pause_video').show();
-    $('.section:eq('+ind+')').find('.video_name').css('opacity', 1);
-}
-
-function onLeave(e, index){
-	$('.video_name').css('opacity', 0);
-	$('.icons .icon.pause_video').hide();
 }
