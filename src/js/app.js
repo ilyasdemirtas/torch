@@ -1,7 +1,7 @@
 var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
 var pageEvents = {
-    wheel: true,
+    wheel: false,
     mouse: false,
     touch: true,
     keydown: true
@@ -9,7 +9,7 @@ var pageEvents = {
 
 if(isTablet){
     pageEvents = {
-        wheel: true,
+        wheel: false,
         mouse: true,
         touch: true,
         keydown: true
@@ -91,41 +91,22 @@ $(document).ready(function() {
 });
 
 function pageInit(){
-    console.log(this.pageEvents);
+    
     pagableInstance = new Pageable(".wrapper", {
         // displays navigation pips
         pips: false,
-        // animation speed
-        animation: 500,
-        // delay in ms
-        delay: 0,
-        // the interval in ms that the resize callback is fired
-        throttle: 50,
-        // swipe / mouse drag distance in px
-        swipeThreshold: 250,
-        // or 'horizontal'
-        orientation: "vertical", 
         // drag / scroll freely instead of snapping to the next page
         freeScroll: true,
+        animation: 700,
+        swipeThreshold: 100,
         // nav elements
         navPrevEl: false,
         navNextEl: false,
-        // infinite scroll
-        infinite: false, 
-        // default: false
-        slideshow: false,
-        // easing function
-        easing: function easing(t, b, c, d, s) {
-            return -c * (t /= d) * (t - 2) + b;
-        },
-        // child selector
-        childSelector: '[data-anchor]',
         events: this.pageEvents,
         onInit: () => {
             var activeSection = $('.section.pg-active');
             var activeVideo = $(activeSection).find('video');
             if($(activeVideo).length){
-
                 $('.icons .icon.pause_video').show();
                 $(activeSection).find('.video_name').css('opacity', 1);
                 $(activeVideo).addClass('active');
@@ -139,8 +120,11 @@ function pageInit(){
             $('.video_name').css('opacity', 0);
 	        $('.icons .icon.pause_video').hide();
         },
+        onScroll: () => {
+            $('.video_name').css('opacity', 0);
+	        $('.icons .icon.pause_video').hide();
+        },
         onFinish: () => {
-
             $('video').each(function() {
                 $(this).get(0).pause();
                 $(this).get(0).currentTime = 0;
@@ -170,6 +154,31 @@ function pageInit(){
             }
         }
     });
+
+    var lethargy = new Lethargy(); 
+	function fpScroll(e) {
+		e.preventDefault()
+		e.stopPropagation();
+		if (lethargy.check(e) !== false) {
+			if (lethargy.check(e) == 1) {
+				pagableInstance.prev();
+			} else if (lethargy.check(e) == -1) {
+				pagableInstance.next();
+			}
+		}
+	}
+	document.addEventListener('mousewheel', fpScroll, {
+		passive: false
+	});
+	document.addEventListener('DOMMouseScroll', fpScroll, {
+		passive: false
+	});
+	document.addEventListener('wheel', fpScroll, {
+		passive: false
+	});
+	document.addEventListener('MozMousePixelScroll', fpScroll, {
+		passive: false
+	});
 }
 
 function autoScroll(video){

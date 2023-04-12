@@ -4,7 +4,9 @@ html, body {
     margin:0;
     padding:0;
 }
-
+::-webkit-scrollbar {
+    display: none;
+  }
 .section{
     position: relative;
     -webkit-box-sizing: border-box; 
