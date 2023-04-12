@@ -187,44 +187,43 @@ html, body {
     object-fit: cover;
 }
 
-.icons-top-right{
+.icons{
     position: absolute;
     z-index: 10;
+}
+
+.icons-top-right{
     top: 80px;
     right: 10px;
 }
 .icons-bottom-left{
-    position: absolute;
-    z-index: 10;
-    bottom: 10px;
+    bottom: 50px;
     left: 10px;
-    float: left;
 }
 .icons-bottom-right{
-    position: absolute;
-    z-index: 10;
-    bottom: 10px;
-    right: 10px;
+    bottom: 50px;
+    right: 50px;
 }
 .icons .icon{
     cursor: pointer;
     width: 40px;
     opacity: .5;
     transition: all 0.3s ease;
+    position: absolute;
+}
+.icons .icon:hover{
+    opacity: 1;
 }
 
 .icons .icon.open_music_btn, .icons .icon.close_music_btn{
-    margin-right: 10px;
+    right: 55px;
 }
 
 .icons .icon.direction.up{
     transform: rotate(180deg);
-    opacity: 0;
+    right: 2px;
 }
 
-.icons .icon:hover{
-    opacity: 1;
-}
 nav{
     width: 100%;
     height: 64px;
@@ -258,8 +257,6 @@ nav{
     vertical-align: middle;
     z-index: 20;
 }
-  
-  
   .mobile.menu {
       position: absolute;
       top: 0;
@@ -295,7 +292,7 @@ nav{
     position: absolute;
     height: 40px;
     left: 60px;
-    bottom: 80px;
+    bottom: 75px;
     opacity: 0;
     transition: all .4s ease-in-out;
 }
