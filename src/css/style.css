@@ -293,7 +293,7 @@ nav{
 .video_name{
     z-index: 10;
     position: absolute;
-    width: 150px;
+    height: 40px;
     left: 60px;
     bottom: 80px;
     opacity: 0;
