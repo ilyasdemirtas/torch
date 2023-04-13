@@ -16,7 +16,21 @@ if(isTablet){
     };
 }
 
+$(window).bind('orientationchange', function (event) {
+    location.reload(true);
+});
+
+var portrait = window.matchMedia("(orientation: portrait)");
+
 $(document).ready(function() {
+
+    if(isTablet){
+        $('.icons').addClass('mobile');
+        $('.video_name').addClass('mobile');
+    } else {
+        $('.icons').removeClass('mobile');
+        $('.video_name').removeClass('mobile');
+    }
 
     var pagebleInstance;
     
@@ -29,7 +43,7 @@ $(document).ready(function() {
         var src = $(source).attr('src');
         var mobileSrc = $(source).data('mobile-src');
 
-        if(isTablet){
+        if(isTablet && portrait.matches){
             $(source).attr('src', mobileSrc);
             $(source).attr('data-mobile-src', src);
         } else {

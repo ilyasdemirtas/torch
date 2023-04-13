@@ -31,15 +31,15 @@ html, body {
     z-index: 1;
 }
 
-.icons-top-right{
+.icons.icons-top-right{
     top: 80px;
     right: 10px;
 }
-.icons-bottom-left{
+.icons.icons-bottom-left{
     bottom: 50px;
     left: 10px;
 }
-.icons-bottom-right{
+.icons.icons-bottom-right{
     bottom: 50px;
     right: 50px;
 }
@@ -54,13 +54,47 @@ html, body {
     opacity: 1;
 }
 
-.icons .icon.open_music_btn, .icons .icon.close_music_btn{
+.icons .icon.open_music_btn, .icons .icon.bile.close_music_btn{
     right: 55px;
+}
+
+.icons.mobile.icons-top-right{
+    top: 75px;
+}
+.icons.mobile.icons-bottom-left{
+    bottom: 40px;
+}
+.icons.mobile.icons-bottom-right{
+    bottom: 40px;
+    right: 40px;
+}
+.icons.mobile .icon{
+    width: 30px;
+}
+
+.icons.mobile .icon.open_music_btn, .icons.mobile .icon.close_music_btn{
+    right: 40px;
 }
 
 .icons .icon.direction.up{
     transform: rotate(180deg);
     right: 2px;
+}
+
+.video_name{
+    z-index: 10;
+    position: absolute;
+    height: 40px;
+    left: 60px;
+    bottom: 10px;
+    opacity: 0;
+    transition: all .4s ease-in-out;
+}
+
+.video_name.mobile{
+    height: 30px;
+    bottom: 10px;
+    left: 50px;
 }
 
 nav{
@@ -126,14 +160,4 @@ nav ul {
 
 .mobile .menu__item img {
     height: 20px;
-}
-
-.video_name{
-    z-index: 10;
-    position: absolute;
-    height: 40px;
-    left: 60px;
-    bottom: 10px;
-    opacity: 0;
-    transition: all .4s ease-in-out;
 }
