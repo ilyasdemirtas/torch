@@ -120,7 +120,7 @@ function pageInit(){
             $('.video_name').css('opacity', 0);
 	        $('.icons .icon.pause_video').hide();
         },
-        onScroll: () => {
+        onScroll: (e) => {
             $('.video_name').css('opacity', 0);
 	        $('.icons .icon.pause_video').hide();
         },

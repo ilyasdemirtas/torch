@@ -6,7 +6,10 @@ html, body {
 }
 ::-webkit-scrollbar {
     display: none;
-  }
+}
+.pg-wrapper{
+    transform: translate3d(0, 64px, 0);
+}
 .section{
     position: relative;
     -webkit-box-sizing: border-box; 
@@ -14,7 +17,6 @@ html, body {
          box-sizing: border-box;
          background-color: #000;
 }
-
 .section video {
     position: absolute;
     top :0;
