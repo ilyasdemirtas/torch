@@ -1,3 +1,6 @@
+const userAgent = navigator.userAgent.toLowerCase();
+const isTabletDevice = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+
 var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
 var pageEvents = {
@@ -27,9 +30,11 @@ $(document).ready(function() {
     if(isTablet){
         $('.icons').addClass('mobile');
         $('.video_name').addClass('mobile');
+        $('.contact').addClass('mobile');
     } else {
         $('.icons').removeClass('mobile');
         $('.video_name').removeClass('mobile');
+        $('.contact').removeClass('mobile');
     }
 
     var pagebleInstance;
