@@ -64,7 +64,7 @@ html, body {
 }
 
 .page{
-    font-size: 25px;
+    font-size: 20px;
     border-bottom: 1px solid #ddbe3a;
     padding-bottom: 50px;
 }
@@ -97,8 +97,10 @@ html, body {
     margin: 20px 0;
 }
 .page div.is-ortaklarimiz table{
-    display: inline-block;
+    width: 95%;
+    display: inline-table;
     margin: auto 0;
+    max-width: 500px;
 }
 
 .icons{

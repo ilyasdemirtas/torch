@@ -39,7 +39,7 @@
             <span class="page-title">HİKAYEMİZ</span>
             <div class="hikayemiz">
               <div class="text">
-                <p>Torch Brewery'nin hikayesi bir tutkunun, bir inancın ve bir iddianın hikayesidir...</p>
+                <p>Torch Brewery'nin hikayesi bir <span class="red">tutkunun</span>, bir <span class="orange">inancın</span>ve bir <span class="green">iddianın</span>hikayesidir...</p>
                 <p>2014 yılında, İstanbul'un kalbindeki Bomonti Tarihi Bira Fabrikasında işe giriştiğimizde, kendimizi Türkiye'nin en kaliteli ve en özenli biralarını yaratmaya adadık.</p>
                 <p>Biz bira üretimini bir sanat formu olarak görüyoruz. Bu sebeple, tüm biralarımızı her zaman en seçkin hammaddeler ve kendimize özgü mayalarla hazırlıyoruz.Her aşamasını büyük şevk ve haz duyarak ilerlettiğimiz bu yaratıcı süreç, bizi 'küçük parti' üretim felsefesine yönlendirdi. Bu sayede hem yılda 30'a yakın farklı stilde bira sunabiliyor; hem de reçetelerimizde sürekli yenilikler ve geliştirmeler yaparak mükemmeli kovalayabiliyoruz.  Bu yaklaşımımız sayesinde uluslararası bira yarışmalarından Türkiye’ye gelen ilk ödülleri duvarlarımıza asmaya başladık bile...</p>
                 2023 yılında İzmir’deki Tarihi Bomonti Bira Fabrikası’nın bulunduğu Mahall Bomonti’de kurduğumuz tesisle, bu toprakların biracılık mirasını yeşertmeye devam ediyoruz…Önceliğimiz, her zaman bira severlerin kalplerine dokunan, lezzetli ve gusto sahibi biralar yaratmak ve Türkiye'nin craft bira sektörünün öncüsü ve dostu olmaktır. 
@@ -1473,6 +1473,25 @@
       $('.menu__icon').on('click', function(){
         $('body').toggleClass('menu_shown');
       });
+      if ( window.location.hash ) {
+        var target = window.location.hash.slice( 1 );
+        if ( document.getElementById( target ) ) {
+            $( function() {
+                if ( window.location.hash ) {
+                    if ( $( '#' + target ).length ) {
+                        window.scrollTo( 0, 0 );
+                        $( 'html, body' ).animate( {
+                            scrollTop: $( '#' + target ).offset().top - 50
+                        }, 800 );
+                    }
+                }
+            } );
+            if ( 'scrollRestoration' in history ) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo( 0, 0 );
+        }
+      }
     </script>
   </body>
 </html>

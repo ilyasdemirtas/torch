@@ -1473,6 +1473,25 @@
       $('.menu__icon').on('click', function(){
         $('body').toggleClass('menu_shown');
       });
+      if ( window.location.hash ) {
+        var target = window.location.hash.slice( 1 );
+        if ( document.getElementById( target ) ) {
+            $( function() {
+                if ( window.location.hash ) {
+                    if ( $( '#' + target ).length ) {
+                        window.scrollTo( 0, 0 );
+                        $( 'html, body' ).animate( {
+                            scrollTop: $( '#' + target ).offset().top - 50
+                        }, 800 );
+                    }
+                }
+            } );
+            if ( 'scrollRestoration' in history ) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo( 0, 0 );
+        }
+      }
     </script>
   </body>
 </html>
