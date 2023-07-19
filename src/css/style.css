@@ -246,7 +246,7 @@ nav ul {
 }
 
 .contact .text div{
-    font-size: 30px !important;
+    font-size: 30px;
 }
 
 .contact .content{
@@ -312,8 +312,8 @@ nav ul {
     width: 30px;
 }
 
-.contact.mobile{
-    font-size: 20px;
+.contact.mobile .text div{
+    font-size: 20px !important;
 }
 
 .contact.mobile .content .contact-logo{
