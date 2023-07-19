@@ -336,6 +336,23 @@ nav ul {
     margin: 3px;
     font-size: 23px;
 }
+
+span.green{
+    color: #bbb14a;
+}
+
+span.yellow{
+    color: #e4c84a;
+}
+
+span.orange{
+    color: #cb783a;
+}
+
+span.red{
+    color: #c64231;
+}
+
 p.p1 {font-size: 30px; color: #b72e25; -webkit-text-stroke: #b72e25}
 p.p2 {-webkit-text-stroke: #000000; min-height: 18.0px}
 p.p3 {color: #ffffff; -webkit-text-stroke: #ffffff}
