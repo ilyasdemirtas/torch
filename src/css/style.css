@@ -158,20 +158,38 @@ html, body {
     right: 2px;
 }
 
-.video_name{
+span.video_name{
     z-index: 10;
     position: absolute;
-    height: 40px;
     left: 60px;
     bottom: 10px;
     opacity: 0;
     transition: all .4s ease-in-out;
+    padding: 3px 12px;
+    font-family: 'futura_ptdemi';
+    font-size: 27px;
+    color: white !important;
 }
 
 .video_name.mobile{
-    height: 30px;
-    bottom: 10px;
+    font-size: 20px;
     left: 50px;
+}
+
+span.video_name.green{
+    background-color: #bbb14a;
+}
+
+span.video_name.yellow{
+    background-color: #e4c84a;
+}
+
+span.video_name.orange{
+    background-color: #cb783a;
+}
+
+span.video_name.red{
+    background-color: #c64231;
 }
 
 nav{
@@ -352,6 +370,7 @@ span.orange{
 span.red{
     color: #c64231;
 }
+
 
 p.p1 {font-size: 30px; color: #b72e25; -webkit-text-stroke: #b72e25}
 p.p2 {-webkit-text-stroke: #000000; min-height: 18.0px}
